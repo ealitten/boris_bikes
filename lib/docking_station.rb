@@ -1,22 +1,20 @@
 require_relative "bike"
 
 class DockingStation
-  attr_reader :docked_bikes
+  attr_reader :docked_bikes, :capacity
 
-
-  def initialize
+  def initialize(capacity=12)
     @docked_bikes = []
+    @capacity = capacity
   end
 
   def release_bike
-    if @docked_bikes.length == 0
-      raise "No bikes"
-    else
-    return @docked_bikes.pop
-    end
+    raise "No bikes available" unless @docked_bikes.length > 0
+    @docked_bikes.pop
   end
 
   def dock_bike(bike)
+    raise "No space in docking station" unless @docked_bikes.length < @capacity
     @docked_bikes << bike
     @docked_bikes.last #return last stored bike, to check bike was stored correctly
   end
