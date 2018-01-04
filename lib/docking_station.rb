@@ -3,6 +3,7 @@ require_relative "bike"
 class DockingStation
   attr_reader :docked_bikes
 
+
   def initialize
     @docked_bikes = []
   end
@@ -11,7 +12,7 @@ class DockingStation
     if @docked_bikes.length == 0
       raise "No bikes"
     else
-    return  @docked_bikes.pop
+    return @docked_bikes.pop
     end
   end
 
@@ -21,3 +22,4 @@ class DockingStation
   end
 
 end
+
