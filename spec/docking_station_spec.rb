@@ -14,6 +14,19 @@ describe DockingStation do
     end
   end
 
+  describe "initialize" do
+    it "should set capacity if supplied as argument" do
+      dock = DockingStation.new(13)
+      expect(dock.capacity).to eq(13)
+    end
+
+    it "should set capacity as default if no argument" do
+      expect(subject.capacity).to eq(DockingStation::DEFAULT_CAPACITY)
+    end
+
+  end
+
+
   describe "#dock_bike" do
     it "should dock bike in station" do
       bike = Bike.new
