@@ -12,6 +12,11 @@ describe DockingStation do
       subject.dock_bike(bike)
       expect(subject.release_bike).to be_a Bike
     end
+
+    it "should not release bike if not working" do
+    subject.dock_bike(Bike.new(false))
+    expect{subject.release_bike}.to raise_error("Bike not working")
+    end
   end
 
   describe "initialize" do
@@ -37,11 +42,13 @@ describe DockingStation do
       subject.capacity.times{subject.dock_bike(Bike.new)} 
       expect{subject.dock_bike(Bike.new)}.to raise_error("No space in docking station")
     end
-  end
 
-  it "should show bikes in station" do
-    expect(subject.docked_bikes).to eq([]) #station starts with no bikes
-  end
+    it "should report bike broken if not working" do
+      expect(subject.dock_bike(Bike.new(false))).to eq("Bike not working")
+    end
 
-  
+    it "should show bikes in station" do
+      expect(subject.docked_bikes).to eq([]) #station starts with no bikes
+    end
+  end
 end
