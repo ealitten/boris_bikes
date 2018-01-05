@@ -13,8 +13,6 @@ class Van
 
 
     def deliver(target)
-        # raise exception if van empty
-        # for all bikes in van, target.dock_bike
         raise "Van is empty" if @bikes_in_van.nil?
         @bikes_in_van.reverse_each do |bike|
           target.dock_bike(bike)
