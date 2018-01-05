@@ -10,8 +10,19 @@ describe Van do
     end
 
     describe "#deliver" do
-        it "should deliver all bikes to target" do
-            
+      context "when van is empty" do
+        before { subject.instance_variable_set(:@bikes_in_van, nil) }
+        it "should raise an exception" do
+          expect{ subject.deliver double(:garage) }.to raise_error("Van is empty")
         end
+      end
+
+      context "when van has bikes" do
+        let (:bike) { double :bike }
+        before { subject.instance_variable_set(:@bikes_in_van, [bike, bike, bike])}
+        it "should raise an exception" do
+          expect( subject.deliver DockingStation.new ).to eq []
+        end
+      end
     end
 end
