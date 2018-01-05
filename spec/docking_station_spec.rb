@@ -43,10 +43,6 @@ describe DockingStation do
       expect{subject.dock_bike(Bike.new)}.to raise_error("No space in docking station")
     end
 
-    it "should report bike broken if not working" do
-      expect(subject.dock_bike(Bike.new(false))).to eq("Bike not working")
-    end
-
     it "should show bikes in station" do
       expect(subject.docked_bikes).to eq([]) #station starts with no bikes
     end
