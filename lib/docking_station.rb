@@ -17,6 +17,12 @@ class DockingStation
     @docked_bikes.pop
   end
 
+  def release_broken_bikes
+    raise "No bikes available" if empty?
+    @docked_bikes, broken_bikes = @docked_bikes.partition{|bike| bike.working?}
+    broken_bikes
+  end
+
   def dock_bike(bike)
     raise "No space in docking station" if full?
     @docked_bikes << bike
